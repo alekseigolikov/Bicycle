@@ -8,6 +8,7 @@ from modules.logs_module import *
 from modules.conf_module import *
 from modules.vote_module import *
 from modules.stats_module import *
+from modules.state_module import *
 from modules.container_module import *
 from modules.image_module import *
 from modules.service_module import *
@@ -149,6 +150,7 @@ def handler_factory():
             "logs": LogsRequestHandler(),
             "vote": VoteRequestHandler(),
             "default": NodeRequestHandler(),
+            "state":StateRequestHandler()
             }
 
 if __name__ == "__main__":
@@ -160,17 +162,13 @@ if __name__ == "__main__":
     parser.add_argument('-N', dest='name', action='store', help='name assigned in nodelist', default=uuid.uuid4().hex[:32].upper())
     parser.add_argument('-c', dest='config_filename', action='store', help='cofniguration file name', default='config.json' )
     parser.add_argument('-D', dest='database_file', action='store', help='Database file', default='database.db')
-    parser.add_argument('-r', dest='root_path', action='store', help='Path where documents are stored, in proxy mode it holds url of main server', default='C:\\temp\\')
+    parser.add_argument('-r', dest='root_path', action='store', help='Path where documents are stored, in proxy mode it holds url of main server', default=os.path.abspath(os.getcwd()))
     parser.add_argument('-q', dest='query', action='store', help='query string example:''retrieve 123''', default='list')
     parser.add_argument('-m', dest='magic_string', action='store',  help='Magic string sent as query will lead to stop server', default='StopServerNow')
     opts = parser.parse_args()
 
-    config = {'name': opts.name, 'address': opts.address,'port': opts.port, 'keep_going': True,
-                                      'root_path': os.path.abspath(os.getcwd()), 'mode': opts.mode,'ssh_key':opts.ssh_key,
-                                      'magic_string': opts.magic_string, 'database_file': opts.database_file, 'name': opts.name}
-    config_object = configurationClass(opts.config_filename)
-    if opts.config_filename is not None:
-        config = config_object.get_config()
+    config_object = configurationClass(opts.config_filename, opts.root_path)
+    config = config_object.get_config()
     configurationClass.config = config
 
     if opts.mode in ('server', 'proxy'):

@@ -4,6 +4,7 @@ Main interface to interact with cluster instance in order to get/add/change sett
 **NB!** any method that requires change of configuration may return 302 Redirect to master host if request is sent towards slave node.
 
 # Modules:
+* state - module producing list of all components in json format
 * node - module providing access to Node configuration data
 * image - module for Images manipulation
 * container - module for container manipulation

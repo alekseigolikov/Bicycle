@@ -4,7 +4,7 @@
     "database": "database.db",
     "port": "9979",
     "keep_going": true,
-    "root_path": "C:\\prog\\tasks\\antnest",
+    "root_path": "C:\\prog\\tasks\\Bicycle",
     "mode": "server",
     "magic_string": "StopServerNow",
     "database_file": "database.db",

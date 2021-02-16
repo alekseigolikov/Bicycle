@@ -27,7 +27,6 @@ uptimes, etc).
     * [REST API interface](./docs/rest.md) - Base interface to add/modify/get info on services and nodes configuration. This interface does not deploy or delete anything but just manage records in database. Every module record represents entity acting as state machine which states are trigered by API('NEW' and 'DELETE' state), but handled by Deployment subsystem
     * [Deployment subsystem](./docs/deployment.md) - Subsystem tracking configuration changes and deploying them to local docker daemon, bootstraping of new nodes, syncing network bridge and traffic manager settings, this logic is also used to **rebalance** runing instances of active services, if some of hosts are lost
     * [Voting subsystem](./docs/voting.md) - Subsystem managing process of selection master node of cluster, used also to understand if some of hosts are lost
-    * [Conf distribution susystem](./docs/conf_distr.md) - Subsystem managing configuration changes distribution from master to slave nodes
     * [Monitoring/Loging subsystem](./docs/logs.md) - Subsystem managing access to Monitors/Logs on service/node levels
 
 * [CLI tool](./docs/cli.md)

@@ -11,6 +11,8 @@ Main interface to interact with cluster instance in order to get/add/change sett
 * service - module for services configuration
 * logs - module user for logs information(only GET method)
 * vote - uses GET and UPDATE in order to handle master node election
+* [log](./logs.md) - uses GET and ADD methods in order to provide loging interface to runing service
+* [alert](./logs.md) - uses GET, ADD, UPDATE methods in order to provider alerting interface to runing service
 
 # Methods
 All methods using receiving module name as uri in request part, and raw data in body part in json format
@@ -75,7 +77,7 @@ Content-Length: 145
 <pre>
 {
     "image": "0D90B0737182",
-    "tag": "new_one",
+    "tag": "latest",
     "repository": "localhost"
 }
 </pre>
@@ -86,16 +88,18 @@ Content-Length: 145
     "container":"0D90B0737182",
     "image": "0D90B0737182",
     "command": "start",
-    "ports": "80",
-    "name": "UP"
+    "ports": "80,81,82,83,84,85,86,87,88,89,90",
+    "name": "Transactions"
 }
 </pre>
 ## Service
 <pre>
 {
-    "service":"ASDFASDAF",
-    "container":"",
+    "service":"Transactions_engine",
+    "container":"Transactions",
     "replicas": 10,
+    "nodes":"Node_1"
+    "ports":"80,81,82,83,84,85,86,87,88,89,90"
     "min_replicas": 3,
     "status": "UP"
 }
